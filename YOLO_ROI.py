@@ -77,8 +77,8 @@ while True:
                 list2.append([cx])
     cv2.polylines(frame, [np.array(area1, np.int32)], True, (0, 0, 255), 2)
     cv2.polylines(frame, [np.array(area2, np.int32)], True, (255, 0, 0), 2)
-    a = "Vehicle in lane left = " + str(len(list1))
-    b = "Vehicle in lane right = " + str(len(list2))
+    a = "Vehicle in left lane = " + str(len(list1))
+    b = "Vehicle in right lane = " + str(len(list2))
     cv2.putText(frame, str(a), (25, 50),
                         cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
     cv2.putText(frame, str(b), (550, 50),
