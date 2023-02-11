@@ -23,16 +23,16 @@ cv2.setMouseCallback('ROI', POINTS)
 
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 count = 0
-cap = cv2.VideoCapture('videoplayback11.mp4')
+cap = cv2.VideoCapture('video/9.mp4')
 
 fps = cap.get(cv2.CAP_PROP_FPS)
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 duration = frame_count/fps
 
-area1 = [(325, 491), (373, 323), (395, 192), (360, 65), (275, 66),
-         (270, 120), (153, 263), (11, 413), (325, 491)]
-area2 = [(417, 497), (446, 268), (427, 137), (400, 79), (443, 87),
-         (514, 167), (562, 321), (575, 498), (417, 497)]
+area1 = [(4, 492), (469, 492), (530, 296), (541, 272),
+         (450, 272), (346, 310), (205, 367), (5, 471), (4, 492)]
+area2 = [(637, 492), (1014, 492), (1014, 440), (668, 279),
+         (635, 267), (563, 267), (563, 267), (563, 296), (637, 492)]
 
 area1_s = find_polygon_area(np.array(area1, np.int32))
 area2_s = find_polygon_area(np.array(area2, np.int32))
@@ -64,10 +64,10 @@ while True:
             else:
                 print("Same density")
         count = 0
-    cv2.putText(frame, "Density1 in "+str(set_second)+" second = "+str(density1), (25, 150),
-                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
+    cv2.putText(frame, "Density1 in "+str(set_second)+" second = "+str(density1), (30, 150),
+                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
     cv2.putText(frame, "Density2 in "+str(set_second)+" second = "+str(density2), (700, 150),
-                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
+                cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
     frame = cv2.resize(frame, (1020, 500))
     results = model(frame)
     list1 = []
